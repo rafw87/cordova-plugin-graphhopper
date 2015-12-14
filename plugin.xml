@@ -1,0 +1,43 @@
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+xmlns:android="http://schemas.android.com/apk/res/android"
+id="org.rafw87.cordova.graphhopper"
+    version="0.1.1">
+
+    <name>Graphhopper Plugin</name>
+    <description>Cordova plugin that allows you to use Graphhopper routing library.</description>
+    <license>MIT</license>
+    <keywords>cordova,graphhopper</keywords>
+    
+    <js-module src="www/graphhopper.js" name="graphhopper">
+        <clobbers target="graphhopper" />
+    </js-module>
+
+    <!-- android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="GraphhopperPlugin" >
+                <param name="android-package" value="src.org.rafw87.cordova.graphhopper.GraphhopperPlugin"/>
+            </feature>
+        </config-file>
+
+        <source-file src="src/android/src/org/rafw87/cordova/graphhopper/GraphhopperFactory.java" target-dir="src/org/rafw87/cordova/graphhopper" />
+        <source-file src="src/android/src/org/rafw87/cordova/graphhopper/GraphhopperProxy.java" target-dir="src/org/rafw87/cordova/graphhopper" />
+        <source-file src="src/android/src/org/rafw87/cordova/graphhopper/GraphhopperPlugin.java" target-dir="src/org/rafw87/cordova/graphhopper" />
+        
+        <source-file src="src/android/libs/slf4j-api-1.7.5.jar" target-dir="libs" />
+        <source-file src="src/android/libs/slf4j-android-1.7.13.jar" target-dir="libs" />
+        <source-file src="src/android/libs/trove4j-3.0.3.jar" target-dir="libs" />
+        <source-file src="src/android/libs/graphhopper-0.6.jar" target-dir="libs" />
+    </platform>
+    <platform name="browser">
+        <config-file target="config.xml" parent="/*">
+            <feature name="Graphhopper">
+                <param name="browser-package" value="Graphhopper" />
+            </feature>
+        </config-file>
+
+        <js-module src="src/browser/GraphhopperProxy.js" name="GraphhopperProxy">
+            <runs />
+        </js-module>
+    </platform>
+</plugin>
